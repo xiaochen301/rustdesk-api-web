@@ -52,3 +52,20 @@ export function simpleData (data) {
     data,
   })
 }
+
+// XC: 游离设备（注册过但从未绑定用户）
+export function strayList (params) {
+  return request({
+    url: '/peer/stray',
+    params,
+  })
+}
+
+// XC: 收编游离设备到托管用户
+export function adopt (data) {
+  return request({
+    url: '/peer/adopt',
+    method: 'post',
+    data,
+  })
+}

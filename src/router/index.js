@@ -119,6 +119,12 @@ export const asyncRoutes = [
         component: () => import('@/views/group/index.vue'),
       },
       {
+        path: 'stray',
+        name: 'StrayPeer',
+        meta: { title: 'StrayPeer', icon: 'Warning' /*keepAlive: true*/ },
+        component: () => import('@/views/peer/stray.vue'),
+      },
+      {
         path: 'deviceGroup',
         name: 'DeviceGroup',
         meta: { title: 'DeviceGroupManage', icon: 'ChatRound', hide: true /*keepAlive: true*/ },

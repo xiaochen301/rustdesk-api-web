@@ -21,6 +21,12 @@
             <span v-else>{{ T('SharedGroup') }}</span>
           </template>
         </el-table-column>
+        <el-table-column :label="T('GroupMode')" align="center">
+          <template #default="{row}">
+            <el-tag v-if="row.mode === 2" type="warning" effect="plain">{{ T('GroupModeEqual') }}</el-tag>
+            <el-tag v-else type="info" effect="plain">{{ T('GroupModeCentralized') }}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
         <el-table-column :label="T('Actions')" align="center" width="130" fixed="right">
@@ -53,6 +59,26 @@
             </el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item :label="T('GroupMode')" prop="mode" required>
+          <el-radio-group v-model="formData.mode">
+            <el-radio :value="1" style="display: block">
+              {{ T('GroupModeCentralized') }}
+              <span style="font-size: 12px;color: #999">{{ T('GroupModeCentralizedNote') }}</span>
+            </el-radio>
+            <el-radio :value="2" style="display: block">
+              {{ T('GroupModeEqual') }}
+              <span style="font-size: 12px;color: #999">{{ T('GroupModeEqualNote') }}</span>
+            </el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item :label="T('GroupAdmins')">
+          <el-select v-model="formData.admin_ids" multiple filterable clearable style="width: 100%"
+                     :placeholder="T('PleaseSelect')">
+            <el-option v-for="u in users" :key="u.id"
+                       :label="u.username + (u.nickname ? '（' + u.nickname + '）' : '')"
+                       :value="u.id"/>
+          </el-select>
+        </el-form-item>
         <el-form-item>
           <el-button @click="formVisible = false">{{ T('Cancel') }}</el-button>
           <el-button @click="submit" type="primary">{{ T('Submit') }}</el-button>
@@ -65,6 +91,7 @@
 <script setup>
   import { onMounted, reactive, watch, ref, onActivated } from 'vue'
   import { list, create, update, detail, remove } from '@/api/group'
+  import { list as userList } from '@/api/user'
   import { ElMessage, ElMessageBox } from 'element-plus'
   import { T } from '@/utils/i18n'
 
@@ -109,7 +136,17 @@
       getList()
     }
   }
-  onMounted(getList)
+  const users = ref([])
+  const loadUsers = async () => {
+    const res = await userList({ page: 1, page_size: 500 }).catch(_ => false)
+    if (res) {
+      users.value = res.data.list || []
+    }
+  }
+  onMounted(() => {
+    getList()
+    loadUsers()
+  })
   onActivated(getList)
 
   watch(() => listQuery.page, getList)
@@ -125,19 +162,30 @@
     id: 0,
     name: '',
     type: 1,
+    mode: 1,
+    admin_ids: [],
   })
 
-  const toEdit = (row) => {
+  const toEdit = async (row) => {
     formVisible.value = true
     formData.id = row.id
     formData.name = row.name
     formData.type = row.type
+    formData.mode = row.mode || 1
+    formData.admin_ids = []
+    const res = await detail(row.id).catch(_ => false)
+    if (res) {
+      formData.mode = res.data.mode || 1
+      formData.admin_ids = res.data.admin_ids || []
+    }
   }
   const toAdd = () => {
     formVisible.value = true
     formData.id = 0
     formData.name = ''
     formData.type = 1
+    formData.mode = 1
+    formData.admin_ids = []
   }
   const submit = async () => {
     const api = formData.id ? update : create

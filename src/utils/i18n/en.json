@@ -555,5 +555,41 @@
   },
   "UserTypeManaged": {
     "One": "Managed"
+  },
+  "GroupMode": {
+    "One": "Group Mode"
+  },
+  "GroupModeCentralized": {
+    "One": "Centralized"
+  },
+  "GroupModeEqual": {
+    "One": "Peer-to-Peer"
+  },
+  "GroupModeCentralizedNote": {
+    "One": "Admins manage device collections"
+  },
+  "GroupModeEqualNote": {
+    "One": "Members share devices within the group"
+  },
+  "GroupAdmins": {
+    "One": "Group Admins"
+  },
+  "PleaseSelect": {
+    "One": "Please select"
+  },
+  "StrayPeer": {
+    "One": "Stray Devices"
+  },
+  "PeerId": {
+    "One": "Device ID"
+  },
+  "Adopt": {
+    "One": "Adopt"
+  },
+  "AdoptTo": {
+    "One": "Adopt to"
+  },
+  "SelectManagedUser": {
+    "One": "Select a managed user"
   }
 }

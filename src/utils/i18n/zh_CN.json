@@ -571,5 +571,41 @@
   },
   "UserTypeManaged": {
     "One": "托管用户"
+  },
+  "GroupMode": {
+    "One": "群组模式"
+  },
+  "GroupModeCentralized": {
+    "One": "集中式"
+  },
+  "GroupModeEqual": {
+    "One": "平权式"
+  },
+  "GroupModeCentralizedNote": {
+    "One": "管理员统一管理设备集合"
+  },
+  "GroupModeEqualNote": {
+    "One": "组内成员设备互相可见"
+  },
+  "GroupAdmins": {
+    "One": "群组管理员"
+  },
+  "PleaseSelect": {
+    "One": "请选择"
+  },
+  "StrayPeer": {
+    "One": "游离设备"
+  },
+  "PeerId": {
+    "One": "设备 ID"
+  },
+  "Adopt": {
+    "One": "收编"
+  },
+  "AdoptTo": {
+    "One": "收编到"
+  },
+  "SelectManagedUser": {
+    "One": "选择托管用户"
   }
 }
