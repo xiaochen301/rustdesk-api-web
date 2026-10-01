@@ -55,7 +55,7 @@
           <el-radio-group v-model="formData.type">
             <el-radio v-for="item in groupTypes" :key="item.value" :label="item.value" style="display: block">
               {{ item.label }}
-              <span style="font-size: 12px;color: #999">{{ item.note }}</span>
+              <span style="font-size: 12px;color: var(--xc-text-3)">{{ item.note }}</span>
             </el-radio>
           </el-radio-group>
         </el-form-item>
@@ -63,11 +63,11 @@
           <el-radio-group v-model="formData.mode">
             <el-radio :value="1" style="display: block">
               {{ T('GroupModeCentralized') }}
-              <span style="font-size: 12px;color: #999">{{ T('GroupModeCentralizedNote') }}</span>
+              <span style="font-size: 12px;color: var(--xc-text-3)">{{ T('GroupModeCentralizedNote') }}</span>
             </el-radio>
             <el-radio :value="2" style="display: block">
               {{ T('GroupModeEqual') }}
-              <span style="font-size: 12px;color: #999">{{ T('GroupModeEqualNote') }}</span>
+              <span style="font-size: 12px;color: var(--xc-text-3)">{{ T('GroupModeEqualNote') }}</span>
             </el-radio>
           </el-radio-group>
         </el-form-item>

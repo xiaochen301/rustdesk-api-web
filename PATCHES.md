@@ -39,6 +39,9 @@
 - **游离设备页**（2026-10-02）：新页面 `/user/stray`（菜单「游离设备」，系统组）——列表（设备ID/主机名/系统/版本/最后在线）+ 收编对话框（仅托管用户可选）；`api/peer.js` 加 strayList/adopt；实测收编全链路通过
 - **单页模式**：移除多标签后路由切换即加载，`onActivated` 保留（无 keep-alive 时等价 onMounted）
 
+- **部署自恢复**（2026-10-02）：`main.js` + `router/index.js` onError——部署新版本后旧页面请求已失效 chunk 时自动刷新一次（30 秒窗口防循环）；背景=浏览器对无缓存头的 index.html 做启发式缓存，旧页面引用已删除的旧 chunk 报 "Failed to fetch dynamically imported module"
+- **群组页说明文字**（2026-10-02）：`#999` 硬编码 → `var(--xc-text-3)`（暗色模式适配）
+
 ## 说明
 
 - 本重构为正规改造（非补丁式），台账记录过程中的临时妥协与技术债

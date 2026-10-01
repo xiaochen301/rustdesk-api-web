@@ -220,3 +220,14 @@ export const router = createRouter({
   routes: constantRoutes,
 })
 
+// XC: 部署新版本后旧页面请求已失效 chunk 时自动刷新恢复（30 秒窗口防循环刷新）
+router.onError((error) => {
+  if (/Failed to fetch dynamically imported module/i.test(error?.message || '')) {
+    const last = Number(sessionStorage.getItem('xc-preload-reloaded') || 0)
+    if (Date.now() - last > 30000) {
+      sessionStorage.setItem('xc-preload-reloaded', String(Date.now()))
+      window.location.reload()
+    }
+  }
+})
+
