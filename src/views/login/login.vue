@@ -1,40 +1,59 @@
 <template>
-  <div class="login-container">
-    <div class="login-card">
-      <img src="@/assets/logo.png" alt="logo" class="login-logo"/>
-
-      <el-form v-if="!disablePwd" label-position="top" class="login-form">
-        <el-form-item :label="T('Username')">
-          <el-input v-model="form.username" type="username" class="login-input"></el-input>
-        </el-form-item>
-
-        <el-form-item :label="T('Password')">
-          <el-input v-model="form.password" type="password" @keyup.enter.native="login" show-password
-                    class="login-input"></el-input>
-        </el-form-item>
-        <el-form-item :label="T('Captcha')" v-if="captchaCode">
-          <el-input v-model="form.captcha" @keyup.enter.native="login"  class="login-input captcha-input">
-            <template #append>
-              <img :src="captchaCode.b64" @click="loadCaptcha" class="captcha" alt="captcha"/>
-            </template>
-          </el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button @click="login" type="primary" class="login-button">{{ T('Login') }}</el-button>
-          <el-button v-if="allowRegister" @click="register" class="login-button">{{ T('Register') }}</el-button>
-        </el-form-item>
-      </el-form>
-
-      <div class="divider" v-if="options.length > 0 && !disablePwd">
-        <span>{{ T('or login in with') }}</span>
+  <div class="login-page">
+    <!-- 左侧品牌区 -->
+    <div class="brand-panel">
+      <div class="brand-inner">
+        <div class="brand-logo-row">
+          <img src="@/assets/logo.png" alt="logo" class="brand-logo"/>
+          <span class="brand-name">{{ appTitle }}</span>
+        </div>
+        <h1 class="brand-headline">企业级远程控制<br/>管理平台</h1>
+        <p class="brand-sub">集中管理设备、账号与访问权限</p>
+        <div class="brand-foot">
+          <span>RustDesk 自建服务 · 数据自主可控</span>
+        </div>
       </div>
+    </div>
 
-      <div class="oidc-options">
-        <div v-for="(option, index) in options" :key="index" class="oidc-option">
-          <el-button @click="handleOIDCLogin(option.name)" class="oidc-btn">
-            <img :src="getProviderImage(option.name)" alt="provider" class="oidc-icon"/>
-            <span>{{ T(option.name) }}</span>
-          </el-button>
+    <!-- 右侧表单区 -->
+    <div class="form-panel">
+      <div class="form-inner">
+        <h2 class="form-title">登录管理后台</h2>
+        <p class="form-sub">请使用您的账号登录</p>
+
+        <el-form v-if="!disablePwd" label-position="top" class="login-form">
+          <el-form-item :label="T('Username')">
+            <el-input v-model="form.username" type="username" size="large" placeholder="请输入用户名"></el-input>
+          </el-form-item>
+
+          <el-form-item :label="T('Password')">
+            <el-input v-model="form.password" type="password" size="large" @keyup.enter.native="login" show-password
+                      placeholder="请输入密码"></el-input>
+          </el-form-item>
+          <el-form-item :label="T('Captcha')" v-if="captchaCode">
+            <el-input v-model="form.captcha" size="large" @keyup.enter.native="login" class="captcha-input" placeholder="请输入验证码">
+              <template #append>
+                <img :src="captchaCode.b64" @click="loadCaptcha" class="captcha" alt="captcha"/>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item class="submit-item">
+            <el-button @click="login" type="primary" size="large" class="login-button">{{ T('Login') }}</el-button>
+            <el-button v-if="allowRegister" @click="register" size="large" class="login-button">{{ T('Register') }}</el-button>
+          </el-form-item>
+        </el-form>
+
+        <div class="divider" v-if="options.length > 0 && !disablePwd">
+          <span>{{ T('or login in with') }}</span>
+        </div>
+
+        <div class="oidc-options">
+          <div v-for="(option, index) in options" :key="index" class="oidc-option">
+            <el-button @click="handleOIDCLogin(option.name)" class="oidc-btn">
+              <img :src="getProviderImage(option.name)" alt="provider" class="oidc-icon"/>
+              <span>{{ T(option.name) }}</span>
+            </el-button>
+          </div>
         </div>
       </div>
     </div>
@@ -42,8 +61,9 @@
 </template>
 
 <script setup>
-  import { reactive, onMounted, ref } from 'vue'
+  import { reactive, onMounted, ref, computed } from 'vue'
   import { useUserStore } from '@/store/user'
+  import { useAppStore } from '@/store/app'
   import { ElMessage } from 'element-plus'
   import { T } from '@/utils/i18n'
   import { useRoute, useRouter } from 'vue-router'
@@ -52,6 +72,8 @@
 
   const oauthInfo = ref({})
   const userStore = useUserStore()
+  const appStore = useAppStore()
+  const appTitle = computed(() => appStore.setting.title)
   const route = useRoute()
   const router = useRouter()
   const options = reactive([]) // 存储 OIDC 登录选项
@@ -169,78 +191,174 @@
 </script>
 
 <style scoped lang="scss">
-.login-container {
+.login-page {
   display: flex;
-  justify-content: center;
+  min-height: 100vh;
+  background: var(--xc-bg-surface);
+}
+
+/* ---------- 左侧品牌区 ---------- */
+.brand-panel {
+  flex: 1;
+  display: flex;
   align-items: center;
-  height: 100vh;
-  background-color: #2d3a4b;
-  padding: 20px;
-  box-sizing: border-box;
+  justify-content: center;
+  padding: 56px;
+  background: linear-gradient(155deg, #0f172a 0%, #172554 45%, #1e40af 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(620px 320px at 82% 8%, rgba(96, 165, 250, 0.22), transparent 62%),
+      radial-gradient(520px 420px at 8% 92%, rgba(37, 99, 235, 0.30), transparent 60%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 }
 
-.login-card {
-  width: 360px;
-  background-color: #283342;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.brand-inner {
+  position: relative;
+  max-width: 440px;
 }
 
-h1 {
-  margin-bottom: 20px;
+.brand-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 56px;
+
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .brand-name {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+}
+
+.brand-headline {
+  font-size: 34px;
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0 0 18px;
+  letter-spacing: 0.01em;
+}
+
+.brand-sub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 44px;
+  line-height: 1.7;
+}
+
+.brand-foot {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+/* ---------- 右侧表单区 ---------- */
+.form-panel {
+  width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background: var(--xc-bg-surface);
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+}
+
+.form-inner {
+  width: 100%;
+  max-width: 360px;
+}
+
+.form-title {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 600;
+  color: var(--xc-text-1);
+  margin: 0 0 10px;
+}
+
+.form-sub {
+  font-size: 14px;
+  color: var(--xc-text-3);
+  margin: 0 0 28px;
 }
 
 .login-form {
-  margin-bottom: 20px;
+  :deep(.el-form-item__label) {
+    color: var(--xc-text-2);
+    font-weight: 500;
+    padding-bottom: 6px;
+  }
 }
 
-.login-input {
-  width: 100%;
-  .captcha{
-    cursor: pointer;
-    width: 150px;
-  }
-}
-.captcha-input{
-  :deep(.el-input-group__append) {
-    border-radius: 5px;
-    padding: 0;
-    overflow: hidden;
-  }
+.submit-item {
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 .login-button {
   width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
+  height: 42px;
   margin-left: 0;
+  font-size: 15px;
+  border-radius: var(--xc-radius-sm);
+}
+
+.captcha-input {
+  :deep(.el-input-group__append) {
+    border-radius: 0 var(--xc-radius-sm) var(--xc-radius-sm) 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--xc-bg-subtle);
+  }
+
+  .captcha {
+    cursor: pointer;
+    width: 130px;
+    height: 38px;
+    object-fit: cover;
+    display: block;
+  }
 }
 
 .divider {
   display: flex;
   align-items: center;
-  margin: 20px 0;
-  font-size: 14px;
-  color: #888;
+  margin: 24px 0;
+  font-size: 13px;
+  color: var(--xc-text-3);
 
   &::before,
   &::after {
     content: '';
     flex: 1;
     height: 1px;
-    background-color: #ddd;
+    background-color: var(--xc-border-light);
   }
 
   &::before {
-    margin-right: 10px;
+    margin-right: 12px;
   }
 
   &::after {
-    margin-left: 10px;
+    margin-left: 12px;
   }
 }
 
@@ -256,42 +374,21 @@ h1 {
   justify-content: center;
   gap: 10px;
   width: 100%;
-  height: 50px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  color: black;
+  height: 44px;
+  border: 1px solid var(--xc-border);
+  border-radius: var(--xc-radius-sm);
   font-size: 14px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.18s ease;
+
+  &:hover {
+    border-color: var(--xc-primary-border);
+    background: var(--xc-primary-bg);
+  }
 }
 
 .oidc-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-}
-
-.login-logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  display: block;
-}
-
-.el-form-item {
-  ::v-deep(.el-form-item__label) {
-    color: #fff;
-  }
-
-  .el-input {
-    ::v-deep(.el-input__wrapper) {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: transparent;
-    }
-
-    ::v-deep(input) {
-      color: #fff;
-    }
-  }
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
 }
 </style>

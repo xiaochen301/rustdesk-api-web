@@ -15,7 +15,7 @@
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <el-table :data="listRes.list" v-loading="listRes.loading" border>
+      <el-table :data="listRes.list" v-loading="listRes.loading">
         <el-table-column prop="id" label="ID" align="center"/>
         <el-table-column prop="collection_id" :label="T('AddressBook')" align="center" width="150">
           <template #default="{row}">

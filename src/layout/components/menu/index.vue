@@ -3,9 +3,6 @@
           class="menus"
           :collapse="isCollapse"
           :default-active="activeIndex"
-          background-color="#2d3a4b"
-          text-color="#fff"
-          active-text-color="#409eff"
           router
   >
     <menu-item v-for="(route,index) in routes" :key="route.name" :route="route"></menu-item>
@@ -44,12 +41,50 @@
 
 <style lang="scss" scoped>
   .menus {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--xc-header-height));
     border-right: none;
+    padding: 8px 0;
+    background: transparent;
     &:not(.el-menu--collapse) {
       width: var(--sideBarWidth);
     }
 
+    // 菜单项与子菜单标题
+    :deep(.el-menu-item),
+    :deep(.el-sub-menu__title) {
+      height: 40px;
+      line-height: 40px;
+      margin: 2px 10px;
+      border-radius: 8px;
+      color: var(--xc-text-2);
+      font-size: 14px;
+      transition: background 0.18s ease, color 0.18s ease;
+
+      &:hover {
+        background: var(--xc-bg-hover);
+        color: var(--xc-text-1);
+      }
+    }
+
+    // 选中态
+    :deep(.el-menu-item.is-active) {
+      background: var(--xc-primary-bg);
+      color: var(--xc-primary);
+      font-weight: 500;
+    }
+
+    // 子菜单展开容器
+    :deep(.el-sub-menu .el-menu) {
+      background: transparent;
+    }
+
+    // 折叠时
+    &.el-menu--collapse {
+      :deep(.el-menu-item),
+      :deep(.el-sub-menu__title) {
+        margin: 2px 6px;
+      }
+    }
   }
 </style>
 <style>

@@ -27,8 +27,8 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-          <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
+          <el-button @click="toAdd">{{ T('Add') }}</el-button>
+          <el-button @click="toExport">{{ T('Export') }}</el-button>
           <el-popover :visible="showImport" placement="bottom" :width="600">
             <el-upload
                 class="upload-demo"
@@ -53,11 +53,11 @@
             </el-upload>
             <el-button @click="showImport=false" type="primary">{{ T('Cancel') }}</el-button>
             <template #reference>
-              <el-button @click="showImport=true" type="danger" :icon="ArrowDown">{{ T('Import') }}</el-button>
+              <el-button @click="showImport=true" :icon="ArrowDown">{{ T('Import') }}</el-button>
             </template>
           </el-popover>
-          <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>
-          <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAddToAB') }}</el-button>
+          <el-button type="danger" plain @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>
+          <el-button @click="toBatchAddToAB">{{ T('BatchAddToAB') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -66,7 +66,7 @@
         <el-button :icon="Setting" @click="showColumnSetting"></el-button>
       </div>
 
-      <el-table :data="listRes.list" v-loading="listRes.loading" border size="small" @selection-change="handleSelectionChange">
+      <el-table :data="listRes.list" v-loading="listRes.loading" size="small" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center"/>
         <template v-for="c in visibleColumns.filter(cc => cc.visible)" :key="c">
           <el-table-column v-if="c.name==='id'" prop="id" label="ID" align="center" width="150">
@@ -100,13 +100,22 @@
           <el-table-column v-if="c.name==='updated_at'" prop="updated_at" :label="T('UpdatedAt')" align="center" width="150"/>
         </template>
 
-        <el-table-column :label="T('Actions')" align="center" width="500" class-name="table-actions" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="160" fixed="right">
           <template #default="{row}">
-            <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
-            <el-button type="primary" @click="toAddressBook(row)">{{ T('AddToAddressBook') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button link type="primary" @click="toEdit(row)">{{ T('Edit') }}</el-button>
+            <el-dropdown @command="(cmd) => handleRowAction(cmd, row)" style="margin-left: 10px">
+              <el-button link type="primary">
+                {{ T('More') }}<el-icon class="el-icon--right"><ArrowDown/></el-icon>
+              </el-button>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="link">{{ T('Link') }}</el-dropdown-item>
+                  <el-dropdown-item v-if="appStore.setting.appConfig.web_client" command="web">Web Client</el-dropdown-item>
+                  <el-dropdown-item command="ab">{{ T('AddToAddressBook') }}</el-dropdown-item>
+                  <el-dropdown-item command="delete" divided>{{ T('Delete') }}</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </template>
         </el-table-column>
       </el-table>
@@ -315,6 +324,13 @@
       ElMessage.success(T('OperationSuccess'))
       getList()
     }
+  }
+
+  const handleRowAction = (cmd, row) => {
+    if (cmd === 'link') return connectByClient(row.id)
+    if (cmd === 'web') return toWebClientLink(row)
+    if (cmd === 'ab') return toAddressBook(row)
+    if (cmd === 'delete') return del(row)
   }
   onMounted(getList)
   onActivated(getList)

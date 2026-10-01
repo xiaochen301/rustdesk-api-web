@@ -37,7 +37,7 @@
     <el-form-item>
       <el-button v-if="!link" @click="cancel">{{ T('Cancel') }}</el-button>
       <el-button v-if="!link" :loading="loading" @click="submitShare" type="primary">{{ T('Submit') }}</el-button>
-      <el-button v-else @click="cancel" type="success">{{ T('Close') }}</el-button>
+      <el-button v-else @click="cancel">{{ T('Close') }}</el-button>
     </el-form-item>
   </el-form>
 </template>

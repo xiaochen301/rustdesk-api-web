@@ -34,21 +34,21 @@
           <el-form inline label-width="80px">
             <el-form-item>
               <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-              <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-              <el-button type="success" :disabled="!canSendIdServerCmd" @click="showCmd({cmd:'',option:'',target:ID_TARGET})">{{ T('Send') }} To Id</el-button>
-              <el-button type="success" :disabled="!canSendRelayServerCmd" @click="showCmd({cmd:'',option:'',target:RELAY_TARGET})">{{ T('Send') }} To Relay</el-button>
+              <el-button @click="toAdd">{{ T('Add') }}</el-button>
+              <el-button type="primary" :disabled="!canSendIdServerCmd" @click="showCmd({cmd:'',option:'',target:ID_TARGET})">{{ T('Send') }} To Id</el-button>
+              <el-button type="primary" :disabled="!canSendRelayServerCmd" @click="showCmd({cmd:'',option:'',target:RELAY_TARGET})">{{ T('Send') }} To Relay</el-button>
             </el-form-item>
           </el-form>
         </el-card>
         <el-card class="list-body" shadow="hover">
-          <el-table :data="listRes.list" v-loading="listRes.loading" border>
+          <el-table :data="listRes.list" v-loading="listRes.loading">
             <el-table-column prop="cmd" label="cmd" align="center"></el-table-column>
             <el-table-column prop="alias" label="alias" align="center"></el-table-column>
             <el-table-column prop="option" label="option" align="center"></el-table-column>
             <el-table-column prop="explain" label="explain" align="center"></el-table-column>
             <el-table-column label="actions" align="center">
               <template #default="{row}">
-                <el-button type="success" :disabled="!canSendCmd(row.target)" @click="showCmd(row)">{{ T('Send') }}</el-button>
+                <el-button type="primary" :disabled="!canSendCmd(row.target)" @click="showCmd(row)">{{ T('Send') }}</el-button>
                 <el-button v-if="row.id" type="primary" @click="toUpdate(row)">{{ T('Edit') }}</el-button>
                 <el-button v-if="row.id" type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
               </template>

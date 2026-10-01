@@ -25,7 +25,7 @@
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
+      <el-table :data="listRes.list" v-loading="listRes.loading" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="50" align="center"></el-table-column>
         <el-table-column prop="id" label="ID" align="center" width="200">
           <template #default="{row}">
@@ -55,8 +55,8 @@
         <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
         <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
           <template #default="{row}">
-            <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
+            <el-button @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" @click="toWebClientLink(row)">Web Client</el-button>
             <el-button v-if="appStore.setting.appConfig.web_client" type="primary" @click="toShowShare(row)">{{ T('ShareByWebClient') }}</el-button>
             <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
             <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>

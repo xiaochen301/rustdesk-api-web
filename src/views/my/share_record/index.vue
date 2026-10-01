@@ -9,7 +9,7 @@
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
+      <el-table :data="listRes.list" v-loading="listRes.loading" @selection-change="handleSelectionChange">
         <el-table-column type="selection" align="center" width="50"/>
         <el-table-column prop="id" label="ID" align="center" width="100"/>
         <el-table-column prop="peer_id" :label="T('Peer')" align="center"/>

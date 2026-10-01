@@ -30,7 +30,7 @@
     "One": "修改密码"
   },
   "Userinfo": {
-    "One": "用户信息"
+    "One": "我的账号"
   },
   "ParamRequired": {
     "One": "{param} 是必须的"
@@ -82,6 +82,9 @@
   },
   "Edit": {
     "One": "编辑"
+  },
+  "More": {
+    "One": "更多"
   },
   "Delete": {
     "One": "删除"
@@ -201,7 +204,7 @@
     "One": "信息"
   },
   "AddressBooks": {
-    "One": "地址簿"
+    "One": "通讯录条目"
   },
   "System": {
     "One": "系统"
@@ -210,10 +213,10 @@
     "One": "设备管理"
   },
   "AddressBookManage": {
-    "One": "地址簿管理"
+    "One": "目录条目"
   },
   "GroupManage": {
-    "One": "群组管理"
+    "One": "用户组"
   },
   "UserManage": {
     "One": "用户管理"
@@ -228,7 +231,7 @@
     "One": "标签管理"
   },
   "OauthManage": {
-    "One": "Oauth管理"
+    "One": "OAuth 管理"
   },
   "LoginLog": {
     "One": "登录日志"
@@ -420,7 +423,7 @@
     "One": "地址簿"
   },
   "AddressBookNameManage": {
-    "One": "地址簿名称"
+    "One": "设备目录"
   },
   "MyAddressBookTips": {
     "One": "\"我的地址簿\"是系统默认，不可修改、删除"
@@ -547,5 +550,17 @@
   },
   "Remark": {
     "One": "备注"
+  },
+  "MyAddressBookCollection": {
+    "One": "我的通讯录"
+  },
+  "MyTags": {
+    "One": "我的标签"
+  },
+  "MyShareRecord": {
+    "One": "我的分享"
+  },
+  "MyLoginLog": {
+    "One": "我的登录记录"
   }
 }

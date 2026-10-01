@@ -9,10 +9,10 @@
           <div>{{ userStore.email }}</div>
         </el-form-item>
         <el-form-item :label="T('Password')" prop="password">
-          <el-button type="danger" @click="showChangePwd">{{ T('ChangePassword') }}</el-button>
+          <el-button @click="showChangePwd">{{ T('ChangePassword') }}</el-button>
         </el-form-item>
         <el-form-item label="OIDC">
-          <el-table :data="oidcData" border fit>
+          <el-table :data="oidcData" fit>
             <el-table-column :label="T('IdP')" prop="op" align="center"></el-table-column>
             <el-table-column :label="T('Status')" prop="status" align="center">
               <template #default="{ row }">
@@ -23,7 +23,7 @@
             <el-table-column :label="T('Actions')" align="center" width="200">
               <template #default="{ row }">
                 <el-button v-if="row.status === 1" type="danger" size="small" @click="toUnBind(row)">{{ T('UnBind') }}</el-button>
-                <el-button v-else type="success" size="small" @click="toBind(row)">{{ T('ToBind') }}</el-button>
+                <el-button v-else size="small" @click="toBind(row)">{{ T('ToBind') }}</el-button>
               </template>
             </el-table-column>
           </el-table>

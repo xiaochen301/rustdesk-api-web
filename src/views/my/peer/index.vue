@@ -21,7 +21,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
-          <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
+          <el-button @click="toExport">{{ T('Export') }}</el-button>
           <!--          <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>-->
           <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAddToAB') }}</el-button>
 
@@ -29,7 +29,7 @@
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <el-table :data="listRes.list" v-loading="listRes.loading" border size="small" @selection-change="handleSelectionChange">
+      <el-table :data="listRes.list" v-loading="listRes.loading" size="small" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center"/>
         <el-table-column prop="id" label="ID" align="center" width="150">
           <template #default="{row}">
@@ -56,8 +56,8 @@
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center" width="150"/>
         <el-table-column :label="T('Actions')" align="center" width="500" class-name="table-actions" fixed="right">
           <template #default="{row}">
-            <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
+            <el-button @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" @click="toWebClientLink(row)">Web Client</el-button>
             <el-button type="primary" @click="toAddressBook(row)">{{ T('AddToAddressBook') }}</el-button>
             <el-button @click="toView(row)">{{ T('View') }}</el-button>
             <!--            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>-->

@@ -70,7 +70,7 @@ export const asyncRoutes = [
       {
         path: 'address_book_collection',
         name: 'MyAddressBookCollection',
-        meta: { title: 'AddressBookName', icon: 'Collection' /*keepAlive: true*/ },
+        meta: { title: 'MyAddressBookCollection', icon: 'Collection' /*keepAlive: true*/ },
         component: () => import('@/views/my/address_book/collection.vue'),
       },
       {
@@ -82,19 +82,19 @@ export const asyncRoutes = [
       {
         path: 'tag',
         name: 'MyTagList',
-        meta: { title: 'Tags', icon: 'CollectionTag' /*keepAlive: true*/ },
+        meta: { title: 'MyTags', icon: 'CollectionTag' /*keepAlive: true*/ },
         component: () => import('@/views/my/tag/index.vue'),
       },
       {
         path: 'shareRecord',
         name: 'MyShareRecordList',
-        meta: { title: 'ShareRecord', icon: 'Share' /*keepAlive: true*/ },
+        meta: { title: 'MyShareRecord', icon: 'Share' /*keepAlive: true*/ },
         component: () => import('@/views/my/share_record/index.vue'),
       },
       {
         path: 'loginLog',
         name: 'MyLoginLog',
-        meta: { title: 'LoginLog', icon: 'List' /*keepAlive: true*/ },
+        meta: { title: 'MyLoginLog', icon: 'List' /*keepAlive: true*/ },
         component: () => import('@/views/my/login_log/index.vue'),
       },
     ],
@@ -121,7 +121,7 @@ export const asyncRoutes = [
       {
         path: 'deviceGroup',
         name: 'DeviceGroup',
-        meta: { title: 'DeviceGroupManage', icon: 'ChatRound' /*keepAlive: true*/ },
+        meta: { title: 'DeviceGroupManage', icon: 'ChatRound', hide: true /*keepAlive: true*/ },
         component: () => import('@/views/group/deviceGroupList.vue'),
       },
       {
@@ -157,7 +157,7 @@ export const asyncRoutes = [
       {
         path: 'tag',
         name: 'UserTag',
-        meta: { title: 'TagsManage', icon: 'CollectionTag' /*keepAlive: true*/ },
+        meta: { title: 'TagsManage', icon: 'CollectionTag', hide: true /*keepAlive: true*/ },
         component: () => import('@/views/tag/index.vue'),
       },
       {
@@ -169,7 +169,7 @@ export const asyncRoutes = [
       {
         path: '/userToken',
         name: 'UserToken',
-        meta: { title: 'UserToken', icon: 'Ticket' /*keepAlive: true*/ },
+        meta: { title: 'UserToken', icon: 'Ticket', hide: true /*keepAlive: true*/ },
         component: () => import('@/views/user/token.vue'),
       },
       {

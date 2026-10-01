@@ -30,7 +30,7 @@
     "One": "Change Password"
   },
   "Userinfo": {
-    "One": "User Info"
+    "One": "My Account"
   },
   "ParamRequired": {
     "One": "{param} is required"
@@ -82,6 +82,9 @@
   },
   "Edit": {
     "One": "Edit"
+  },
+  "More": {
+    "One": "More"
   },
   "Delete": {
     "One": "Delete"
@@ -201,7 +204,7 @@
     "One": "Info"
   },
   "AddressBooks": {
-    "One": "Address Books"
+    "One": "Contact Entries"
   },
   "System": {
     "One": "System"
@@ -210,10 +213,10 @@
     "One": "Peers"
   },
   "AddressBookManage": {
-    "One": "Address Books"
+    "One": "Directory Entries"
   },
   "GroupManage": {
-    "One": "Groups"
+    "One": "User Groups"
   },
   "UserManage": {
     "One": "Users"
@@ -228,7 +231,7 @@
     "One": "Tags"
   },
   "OauthManage": {
-    "One": "Oauth"
+    "One": "OAuth"
   },
   "LoginLog": {
     "One": "Login Log"
@@ -431,7 +434,7 @@
     "One": "Address Book"
   },
   "AddressBookNameManage": {
-    "One": "Address Book Names"
+    "One": "Device Directory"
   },
   "MyAddressBookTips": {
     "One": "\"My Address Book\" is the default of the system, cannot be modified or deleted"
@@ -531,5 +534,17 @@
   },
   "Remark": {
     "One": "Remark"
+  },
+  "MyAddressBookCollection": {
+    "One": "My Contacts"
+  },
+  "MyTags": {
+    "One": "My Tags"
+  },
+  "MyShareRecord": {
+    "One": "My Shares"
+  },
+  "MyLoginLog": {
+    "One": "My Login History"
   }
 }

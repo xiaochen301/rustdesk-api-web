@@ -20,7 +20,8 @@ const conf = {
   base: './', // index.html文件所在位置
   root: './', // js导入的资源路径，src
   server: {
-    open: true,
+    open: false,
+    host: true,
     port: process.env.VITE_DEV_PORT,
     proxy: {
       [process.env.VITE_SERVER_API]: {

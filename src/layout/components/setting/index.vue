@@ -98,14 +98,23 @@
   }
 
   .title {
-    color: #fff;
+    color: var(--xc-text-2);
     display: flex;
     align-items: center;
     justify-content: space-around;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.18s ease, color 0.18s ease;
 
+    &:hover {
+      background: var(--xc-bg-hover);
+      color: var(--xc-text-1);
+    }
 
     .nickname {
-      padding: 0 10px;
+      padding: 0 8px;
+      font-weight: 500;
     }
   }
 }

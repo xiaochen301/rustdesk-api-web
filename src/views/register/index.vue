@@ -20,7 +20,7 @@
                     class="login-input"></el-input>
         </el-form-item>
         <el-form-item label="">
-          <el-button @click="submit" class="login-button" type="success">{{ T('Submit') }}</el-button>
+          <el-button type="primary" @click="submit" class="login-button">{{ T('Submit') }}</el-button>
           <el-button @click="toLogin" class="login-button">{{ T('ToLogin') }}</el-button>
         </el-form-item>
       </el-form>

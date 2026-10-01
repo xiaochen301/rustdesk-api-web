@@ -10,7 +10,7 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-tag type="danger" effect="light" style="margin-bottom: 10px">{{ T('MyAddressBookTips') }}</el-tag>
-      <el-table :data="list" v-loading="listRes.loading" border>
+      <el-table :data="list" v-loading="listRes.loading">
         <!--        <el-table-column prop="id" label="ID" align="center"/>-->
         <el-table-column prop="name" :label="T('Name')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>

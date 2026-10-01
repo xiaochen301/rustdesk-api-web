@@ -1,0 +1,414 @@
+// ============================================================
+// AnyLink-RustDesk 管理后台 · 设计系统
+// 风格：现代企业浅色风（Modern Enterprise Light）
+// 基准：浅色底 / 蓝色主色 / 圆角卡片 / 信息密度适中
+// ============================================================
+
+:root {
+  // ---------- 品牌色 ----------
+  --xc-primary: #2563eb;
+  --xc-primary-hover: #1d4ed8;
+  --xc-primary-active: #1e40af;
+  --xc-primary-bg: #eff6ff;          // 选中/浅底
+  --xc-primary-bg-hover: #dbeafe;
+  --xc-primary-border: #bfdbfe;
+
+  // ---------- 中性色 ----------
+  --xc-bg-app: #f5f7fa;              // 页面底色
+  --xc-bg-surface: #ffffff;          // 卡片/内容表面
+  --xc-bg-subtle: #f9fafb;           // 次级表面（表头/工具条）
+  --xc-bg-hover: #f3f4f6;            // 悬浮态
+
+  --xc-text-1: #111827;              // 主文本
+  --xc-text-2: #4b5563;              // 次文本
+  --xc-text-3: #9ca3af;              // 弱文本/占位
+  --xc-text-inverse: #ffffff;
+
+  --xc-border: #e5e7eb;              // 常规边框
+  --xc-border-light: #f3f4f6;        // 浅分隔线
+  --xc-border-strong: #d1d5db;       // 强边框（hover/滚动条）
+
+  // ---------- 语义色 ----------
+  --xc-success: #16a34a;
+  --xc-success-bg: #f0fdf4;
+  --xc-warning: #d97706;
+  --xc-warning-bg: #fffbeb;
+  --xc-danger: #dc2626;
+  --xc-danger-bg: #fef2f2;
+  --xc-info: #2563eb;
+
+  // ---------- 圆角 ----------
+  --xc-radius-sm: 6px;
+  --xc-radius: 8px;
+  --xc-radius-lg: 12px;
+
+  // ---------- 阴影 ----------
+  --xc-shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.04);
+  --xc-shadow: 0 2px 8px rgba(17, 24, 39, 0.06);
+  --xc-shadow-lg: 0 8px 24px rgba(17, 24, 39, 0.10);
+
+  // ---------- 布局尺寸 ----------
+  --xc-sidebar-width: 236px;
+  --xc-header-height: 56px;
+  --xc-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  // ============================================================
+  // Element Plus 变量覆盖
+  // ============================================================
+  --el-color-primary: var(--xc-primary);
+  --el-color-primary-light-3: #5b8def;
+  --el-color-primary-light-5: #8ab0f4;
+  --el-color-primary-light-7: #b9d0f9;
+  --el-color-primary-light-8: #d1e0fb;
+  --el-color-primary-light-9: #eaf0fd;
+  --el-color-primary-dark-2: #1d4ed8;
+
+  --el-color-success: var(--xc-success);
+  --el-color-success-light-9: var(--xc-success-bg);
+  --el-color-warning: var(--xc-warning);
+  --el-color-warning-light-9: var(--xc-warning-bg);
+  --el-color-danger: var(--xc-danger);
+  --el-color-danger-light-9: var(--xc-danger-bg);
+  --el-color-error: var(--xc-danger);
+  --el-color-error-light-9: var(--xc-danger-bg);
+  --el-color-info: #6b7280;
+  --el-color-info-light-9: #f9fafb;
+
+  --el-text-color-primary: var(--xc-text-1);
+  --el-text-color-regular: var(--xc-text-2);
+  --el-text-color-secondary: var(--xc-text-3);
+  --el-text-color-placeholder: var(--xc-text-3);
+  --el-text-color-disabled: #d1d5db;
+
+  --el-border-color: var(--xc-border);
+  --el-border-color-light: var(--xc-border-light);
+  --el-border-color-lighter: var(--xc-border-light);
+  --el-border-color-extra-light: #f9fafb;
+  --el-border-color-hover: var(--xc-border-strong);
+
+  --el-fill-color: var(--xc-bg-hover);
+  --el-fill-color-light: var(--xc-bg-subtle);
+  --el-fill-color-lighter: #fafafa;
+  --el-fill-color-blank: var(--xc-bg-surface);
+
+  --el-bg-color: var(--xc-bg-surface);
+  --el-bg-color-page: var(--xc-bg-app);
+  --el-bg-color-overlay: var(--xc-bg-surface);
+
+  --el-border-radius-base: var(--xc-radius-sm);
+  --el-border-radius-small: 4px;
+  --el-border-radius-round: 999px;
+
+  --el-box-shadow: var(--xc-shadow);
+  --el-box-shadow-light: var(--xc-shadow-sm);
+  --el-box-shadow-lighter: var(--xc-shadow-sm);
+  --el-box-shadow-dark: var(--xc-shadow-lg);
+
+  --el-font-family: var(--xc-font-sans);
+  --el-font-size-base: 14px;
+
+  --el-disabled-bg-color: var(--xc-bg-hover);
+  --el-disabled-text-color: var(--xc-text-3);
+  --el-disabled-border-color: var(--xc-border);
+
+  --el-mask-color: rgba(17, 24, 39, 0.45);
+}
+
+// ============================================================
+// 全局基础
+// ============================================================
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--xc-font-sans);
+  color: var(--xc-text-1);
+  background-color: var(--xc-bg-app);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+// 数字等宽（数据表格/统计）
+.tabular-nums,
+.el-table td .cell,
+.el-pagination {
+  font-variant-numeric: tabular-nums;
+}
+
+// 文本选中
+::selection {
+  background: var(--xc-primary-bg-hover);
+  color: var(--xc-primary-active);
+}
+
+// 滚动条
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--xc-border-strong);
+  border-radius: 4px;
+  &:hover { background: var(--xc-text-3); }
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+// 焦点环
+:focus-visible {
+  outline: 2px solid var(--xc-primary);
+  outline-offset: 1px;
+  border-radius: 4px;
+}
+
+// ============================================================
+// Element Plus 组件级微调
+// ============================================================
+
+// ---------- 按钮 ----------
+.el-button {
+  font-weight: 500;
+  border-radius: var(--xc-radius-sm);
+  transition: all 0.18s ease;
+
+  &.el-button--primary {
+    --el-button-hover-bg-color: var(--xc-primary-hover);
+    --el-button-hover-border-color: var(--xc-primary-hover);
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+    &:hover { box-shadow: 0 2px 6px rgba(37, 99, 235, 0.28); }
+  }
+
+  // 表格行内小按钮更轻盈
+  &.is-link, &.is-text {
+    font-weight: 400;
+  }
+}
+
+// ---------- 输入框 ----------
+.el-input__wrapper,
+.el-textarea__inner {
+  border-radius: var(--xc-radius-sm);
+  box-shadow: 0 0 0 1px var(--xc-border) inset;
+  transition: box-shadow 0.18s ease;
+
+  &:hover { box-shadow: 0 0 0 1px var(--xc-border-strong) inset; }
+  &.is-focus, &:focus {
+    box-shadow: 0 0 0 1px var(--xc-primary) inset, 0 0 0 3px var(--xc-primary-bg);
+  }
+}
+
+// ---------- 卡片 ----------
+.el-card {
+  border-radius: var(--xc-radius);
+  border: 1px solid var(--xc-border-light);
+  box-shadow: var(--xc-shadow-sm);
+}
+
+// ---------- 表格 ----------
+.el-table {
+  --el-table-border-color: var(--xc-border-light);
+  --el-table-header-bg-color: var(--xc-bg-subtle);
+  --el-table-header-text-color: var(--xc-text-2);
+  --el-table-row-hover-bg-color: var(--xc-bg-hover);
+  font-size: 13.5px;
+
+  th.el-table__cell {
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+
+  .el-table__cell {
+    padding: 10px 0;
+  }
+}
+
+// ---------- 对话框 ----------
+.el-dialog {
+  border-radius: var(--xc-radius-lg);
+  box-shadow: var(--xc-shadow-lg);
+
+  .el-dialog__header {
+    padding: 20px 24px 12px;
+    margin-right: 0;
+    .el-dialog__title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--xc-text-1);
+    }
+  }
+
+  .el-dialog__body { padding: 8px 24px 20px; }
+  .el-dialog__footer { padding: 0 24px 20px; }
+}
+
+// ---------- 标签 ----------
+.el-tag {
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+}
+
+// ---------- 分页 ----------
+.el-pagination {
+  --el-pagination-button-bg-color: transparent;
+  justify-content: flex-end;
+  padding: 4px 0;
+}
+
+// ---------- 下拉/弹层 ----------
+.el-dropdown-menu,
+.el-select-dropdown,
+.el-popper {
+  border-radius: var(--xc-radius);
+}
+
+.el-dropdown-menu__item {
+  border-radius: 6px;
+  margin: 0 6px;
+  padding: 7px 12px;
+  &:not(.is-disabled):hover {
+    background: var(--xc-primary-bg);
+    color: var(--xc-primary);
+  }
+}
+
+// ---------- 消息提示 ----------
+.el-message {
+  border-radius: var(--xc-radius);
+  box-shadow: var(--xc-shadow-lg);
+  border: 1px solid var(--xc-border-light);
+}
+
+// ---------- 标签页 ----------
+.el-tabs__item {
+  font-weight: 500;
+  &.is-active { font-weight: 600; }
+}
+
+// ---------- 表单 ----------
+.el-form-item__label {
+  font-weight: 500;
+  color: var(--xc-text-2);
+}
+
+// ---------- 开关 ----------
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--xc-primary);
+}
+
+// ---------- 空状态 ----------
+.el-empty__description p {
+  color: var(--xc-text-3);
+}
+
+// ============================================================
+// 暗色主题（html.dark）
+// 覆盖全部 --xc-* token 与 --el-* 映射，保证明暗切换完整一致
+// 注：本段在 element-plus dark/css-vars.css 之后加载，同优先级下生效
+// ============================================================
+html.dark {
+  // ---------- 品牌色 ----------
+  --xc-primary: #3b82f6;
+  --xc-primary-hover: #60a5fa;
+  --xc-primary-active: #93c5fd;
+  --xc-primary-bg: rgba(59, 130, 246, 0.15);
+  --xc-primary-bg-hover: rgba(59, 130, 246, 0.25);
+  --xc-primary-border: rgba(59, 130, 246, 0.38);
+
+  // ---------- 中性色 ----------
+  --xc-bg-app: #0f1115;
+  --xc-bg-surface: #171a21;
+  --xc-bg-subtle: #1c2027;
+  --xc-bg-hover: #22262e;
+
+  --xc-text-1: #e5e7eb;
+  --xc-text-2: #9ca3af;
+  --xc-text-3: #6b7280;
+  --xc-text-inverse: #111827;
+
+  --xc-border: #2a2f38;
+  --xc-border-light: #22262e;
+  --xc-border-strong: #3a4150;
+
+  // ---------- 语义色 ----------
+  --xc-success: #22c55e;
+  --xc-success-bg: rgba(34, 197, 94, 0.14);
+  --xc-warning: #f59e0b;
+  --xc-warning-bg: rgba(245, 158, 11, 0.14);
+  --xc-danger: #ef4444;
+  --xc-danger-bg: rgba(239, 68, 68, 0.14);
+  --xc-info: #3b82f6;
+
+  // ---------- 阴影 ----------
+  --xc-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --xc-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --xc-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.55);
+
+  // ---------- Element Plus 覆盖（暗色）----------
+  --el-color-primary: var(--xc-primary);
+  --el-color-primary-light-3: #60a5fa;
+  --el-color-primary-light-5: #3b82f6;
+  --el-color-primary-light-7: rgba(59, 130, 246, 0.38);
+  --el-color-primary-light-8: rgba(59, 130, 246, 0.26);
+  --el-color-primary-light-9: rgba(59, 130, 246, 0.15);
+  --el-color-primary-dark-2: #2563eb;
+
+  --el-color-success: var(--xc-success);
+  --el-color-success-light-9: var(--xc-success-bg);
+  --el-color-warning: var(--xc-warning);
+  --el-color-warning-light-9: var(--xc-warning-bg);
+  --el-color-danger: var(--xc-danger);
+  --el-color-danger-light-9: var(--xc-danger-bg);
+  --el-color-error: var(--xc-danger);
+  --el-color-error-light-9: var(--xc-danger-bg);
+  --el-color-info: #9ca3af;
+  --el-color-info-light-9: rgba(156, 163, 175, 0.14);
+
+  --el-text-color-primary: var(--xc-text-1);
+  --el-text-color-regular: var(--xc-text-2);
+  --el-text-color-secondary: var(--xc-text-3);
+  --el-text-color-placeholder: var(--xc-text-3);
+  --el-text-color-disabled: #4b5563;
+
+  --el-border-color: var(--xc-border);
+  --el-border-color-light: var(--xc-border-light);
+  --el-border-color-lighter: var(--xc-border-light);
+  --el-border-color-extra-light: #1c2027;
+  --el-border-color-hover: var(--xc-border-strong);
+
+  --el-fill-color: var(--xc-bg-hover);
+  --el-fill-color-light: var(--xc-bg-subtle);
+  --el-fill-color-lighter: #1c2027;
+  --el-fill-color-blank: var(--xc-bg-surface);
+
+  --el-bg-color: var(--xc-bg-surface);
+  --el-bg-color-page: var(--xc-bg-app);
+  --el-bg-color-overlay: #1c2027;
+
+  --el-disabled-bg-color: var(--xc-bg-hover);
+  --el-disabled-text-color: var(--xc-text-3);
+  --el-disabled-border-color: var(--xc-border);
+
+  --el-box-shadow: var(--xc-shadow);
+  --el-box-shadow-light: var(--xc-shadow-sm);
+  --el-box-shadow-lighter: var(--xc-shadow-sm);
+  --el-box-shadow-dark: var(--xc-shadow-lg);
+
+  --el-mask-color: rgba(0, 0, 0, 0.65);
+
+  // ---------- 组件级暗色微调 ----------
+  ::selection {
+    background: var(--xc-primary-bg-hover);
+    color: var(--xc-text-1);
+  }
+
+  .el-button--primary {
+    box-shadow: 0 1px 2px rgba(59, 130, 246, 0.28);
+    &:hover { box-shadow: 0 2px 6px rgba(59, 130, 246, 0.36); }
+  }
+}
