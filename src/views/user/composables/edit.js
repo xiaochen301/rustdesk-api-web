@@ -7,7 +7,7 @@ import { T } from '@/utils/i18n'
 
 export function useGetDetail (id) {
   let item = ref({})  //保留原始值
-  let form = ref({})
+  let form = ref({ type: 1 }) // XC: 默认普通用户（编辑时被 detail 覆盖）
   const groupsList = ref([])
   const getDetail = async (id) => {
     const res = await detail(id)

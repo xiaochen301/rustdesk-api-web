@@ -562,5 +562,14 @@
   },
   "MyLoginLog": {
     "One": "我的登录记录"
+  },
+  "UserType": {
+    "One": "账号类型"
+  },
+  "UserTypeNormal": {
+    "One": "普通用户"
+  },
+  "UserTypeManaged": {
+    "One": "托管用户"
   }
 }

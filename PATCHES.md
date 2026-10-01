@@ -34,6 +34,7 @@
 - i18n 同步（zh_CN + en 双字典）
 - **单页模式改造**（用户反馈 2026-10-02）：移除多标签页（tags）与 keep-alive 缓存 → 普通管理系统单页模式；删除 `layout/components/tags/` + `store/tags.js`
 - **明暗主题完整修复**（用户反馈 2026-10-02）：`html.dark` 段覆盖全部 `--xc-*` token 与 `--el-*` 映射；硬编码颜色改变量引用（新增 `--xc-border-strong`）；修复根因=自定义变量无暗色值导致半明半暗
+- **用户类型前端配套**（2026-10-02）：用户管理页加「账号类型」列（普通/托管 tag）+ 编辑表单类型选择（radio）；i18n 三键（UserType/UserTypeNormal/UserTypeManaged）
 
 ## 说明
 

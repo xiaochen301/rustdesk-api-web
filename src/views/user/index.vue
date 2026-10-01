@@ -24,6 +24,12 @@
             <span v-else> - </span>
           </template>
         </el-table-column>
+        <el-table-column :label="T('UserType')" align="center">
+          <template #default="{row}">
+            <el-tag v-if="row.type === 2" type="warning">{{ T('UserTypeManaged') }}</el-tag>
+            <el-tag v-else type="info">{{ T('UserTypeNormal') }}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column :label="T('Status')" align="center">
           <template #default="{row}">
             <el-switch v-model="row.status"

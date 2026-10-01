@@ -26,6 +26,12 @@
                    :inactive-value="false"
         ></el-switch>
       </el-form-item>
+      <el-form-item :label="T('UserType')" prop="type">
+        <el-radio-group v-model="form.type">
+          <el-radio :value="1">{{ T('UserTypeNormal') }}</el-radio>
+          <el-radio :value="2">{{ T('UserTypeManaged') }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-form-item :label="T('Status')" prop="status">
         <el-switch v-model="form.status"
                    :active-value="ENABLE_STATUS"

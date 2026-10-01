@@ -546,5 +546,14 @@
   },
   "MyLoginLog": {
     "One": "My Login History"
+  },
+  "UserType": {
+    "One": "Account Type"
+  },
+  "UserTypeNormal": {
+    "One": "Standard"
+  },
+  "UserTypeManaged": {
+    "One": "Managed"
   }
 }
