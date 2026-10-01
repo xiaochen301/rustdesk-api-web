@@ -35,6 +35,9 @@
 - **单页模式改造**（用户反馈 2026-10-02）：移除多标签页（tags）与 keep-alive 缓存 → 普通管理系统单页模式；删除 `layout/components/tags/` + `store/tags.js`
 - **明暗主题完整修复**（用户反馈 2026-10-02）：`html.dark` 段覆盖全部 `--xc-*` token 与 `--el-*` 映射；硬编码颜色改变量引用（新增 `--xc-border-strong`）；修复根因=自定义变量无暗色值导致半明半暗
 - **用户类型前端配套**（2026-10-02）：用户管理页加「账号类型」列（普通/托管 tag）+ 编辑表单类型选择（radio）；i18n 三键（UserType/UserTypeNormal/UserTypeManaged）
+- **群组页增强**（2026-10-02）：列表加「群组模式」列（集中式/平权式 tag）；编辑对话框加模式选择（含说明）+ 群组管理员多选（用户列表加载，filterable）；实测提交持久化通过（admin_ids）
+- **游离设备页**（2026-10-02）：新页面 `/user/stray`（菜单「游离设备」，系统组）——列表（设备ID/主机名/系统/版本/最后在线）+ 收编对话框（仅托管用户可选）；`api/peer.js` 加 strayList/adopt；实测收编全链路通过
+- **单页模式**：移除多标签后路由切换即加载，`onActivated` 保留（无 keep-alive 时等价 onMounted）
 
 ## 说明
 
